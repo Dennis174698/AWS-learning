@@ -1,0 +1,50 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "folder1",
+            "Effect": "Deny",
+            "Principal": "*",
+            "Action": "s3:*",
+            "Resource": [
+                "arn:aws:s3:::bucket/folder1/",
+                "arn:aws:s3:::bucket/folder1/*"
+            ],
+            "Condition": {
+                "StringNotEquals": {
+                    "aws:username": "@student.uwa.edu.au"
+                }
+            }
+        },
+        {
+            "Sid": "folder2",
+            "Effect": "Deny",
+            "Principal": "*",
+            "Action": "s3:*",
+            "Resource": [
+                "arn:aws:s3:::bucket/folder2/",
+                "arn:aws:s3:::bucket/folder2/*"
+            ],
+            "Condition": {
+                "StringNotLike": {
+                    "aws:username": "*@folder2.uwa.edu.au"
+                }
+            }
+        },
+        {
+            "Sid": "folder3",
+            "Effect": "Deny",
+            "Principal": "*",
+            "Action": "s3:*",
+            "Resource": [
+                "arn:aws:s3:::bucket/folder3/",
+                "arn:aws:s3:::bucket/folder3/*"
+            ],
+            "Condition": {
+                "StringNotLike": {
+                    "aws:username": "*@folder3.uwa.edu.au"
+                }
+            }
+        }
+    ]
+}
